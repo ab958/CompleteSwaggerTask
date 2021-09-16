@@ -9,7 +9,7 @@ const health = require('@cloudnative/health-connect');
 let healthcheck = new health.HealthChecker();
 import { dbHost,dbUser,dbPassword,dbName } from "./utills/constant";
 let server: Server | null = null;
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4000;
 function initApplication(): express.Application {
     new DbMongo().connect(dbHost,dbName,dbUser,dbPassword);
     const app = express();
@@ -47,13 +47,12 @@ function initApplication(): express.Application {
 }
 function start() {
     const app = initApplication();
-    // const PORT = process.env.PORT || 4000
     const HOST = process.env.HOST || 'localhost'
   
    
 
     server = app.listen(process.env.PORT || PORT, () => {
-        console.log(`Server Is Live On http://${HOST}:${PORT}/api-docs`);
+        console.log(`Server Is Live On http://${HOST}:${PORT}/swagger`);
     });
 }
 // Start the application
