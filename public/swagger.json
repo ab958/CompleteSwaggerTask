@@ -1,0 +1,401 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"SaveUpdateResBUSS": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					},
+					"BussName": {
+						"type": "string"
+					},
+					"BussSeats": {
+						"type": "number",
+						"format": "double"
+					},
+					"BussBokingDates": {
+						"properties": {
+							"endingDate": {
+								"type": "string",
+								"format": "date-time"
+							},
+							"startingDate": {
+								"type": "string",
+								"format": "date-time"
+							}
+						},
+						"required": [
+							"endingDate",
+							"startingDate"
+						],
+						"type": "object"
+					},
+					"createdAt": {
+						"type": "string"
+					},
+					"updatedAt": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"_id",
+					"BussName",
+					"BussSeats",
+					"BussBokingDates"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"GetBUSS": {
+				"properties": {
+					"id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"SaveReqBUSS": {
+				"properties": {
+					"BussName": {
+						"type": "string"
+					},
+					"BussSeats": {
+						"type": "number",
+						"format": "double"
+					},
+					"BussBokingDates": {
+						"properties": {
+							"endingDate": {
+								"type": "string",
+								"format": "date-time"
+							},
+							"startingDate": {
+								"type": "string",
+								"format": "date-time"
+							}
+						},
+						"required": [
+							"endingDate",
+							"startingDate"
+						],
+						"type": "object"
+					}
+				},
+				"required": [
+					"BussName",
+					"BussSeats",
+					"BussBokingDates"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"UpdateReqBUSS": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					},
+					"BussName": {
+						"type": "string"
+					},
+					"BussSeats": {
+						"type": "number",
+						"format": "double"
+					},
+					"BussBokingDates": {
+						"properties": {
+							"endingDate": {
+								"type": "string",
+								"format": "date-time"
+							},
+							"startingDate": {
+								"type": "string",
+								"format": "date-time"
+							}
+						},
+						"required": [
+							"endingDate",
+							"startingDate"
+						],
+						"type": "object"
+					}
+				},
+				"required": [
+					"_id",
+					"BussName",
+					"BussSeats",
+					"BussBokingDates"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"DeleteBUSS": {
+				"properties": {
+					"id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"SaveUpdateResTRIP": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					},
+					"Tripname": {
+						"type": "string"
+					},
+					"participant_No": {
+						"type": "number",
+						"format": "double"
+					},
+					"tripDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"busses": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
+					"CreatedAt": {
+						"type": "string"
+					},
+					"UpdatedAt": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"_id",
+					"Tripname",
+					"participant_No",
+					"tripDate",
+					"busses"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"SaveReqTrip": {
+				"properties": {
+					"Tripname": {
+						"type": "string"
+					},
+					"participant_No": {
+						"type": "number",
+						"format": "double"
+					},
+					"tripDate": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"busses": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"Tripname",
+					"participant_No",
+					"tripDate",
+					"busses"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {
+			"api_key": {
+				"type": "apiKey",
+				"name": "token",
+				"in": "header"
+			}
+		}
+	},
+	"info": {
+		"title": "final-task",
+		"version": "1.0.0",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {
+			"name": "Abdul Wahab"
+		}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/buss/getbuss": {
+			"post": {
+				"operationId": "Getbuss",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/SaveUpdateResBUSS"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Buss"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/GetBUSS"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/buss/savebuss": {
+			"post": {
+				"operationId": "Savebuss",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/SaveUpdateResBUSS"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Buss"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/SaveReqBUSS"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/buss/updatebuss": {
+			"put": {
+				"operationId": "Updatebuss",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/SaveUpdateResBUSS"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Buss"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateReqBUSS"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/buss/deletebuss": {
+			"delete": {
+				"operationId": "Deletebuss",
+				"responses": {
+					"200": {
+						"description": "Buss deleted"
+					}
+				},
+				"tags": [
+					"Buss"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/DeleteBUSS"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/trip/savetrip": {
+			"post": {
+				"operationId": "SaveTrip",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/SaveUpdateResTRIP"
+								}
+							}
+						}
+					}
+				},
+				"summary": "Busses will automatically add through middle ware",
+				"tags": [
+					"Trip"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/SaveReqTrip"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}
